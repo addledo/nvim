@@ -58,4 +58,7 @@ vim.o.scrolloff = 14
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
+-- set line length indicator to 105 characters
+vim.o.colorcolumn = '105'
+
 -- vim: ts=2 sts=2 sw=2 et
