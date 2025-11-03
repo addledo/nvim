@@ -12,6 +12,12 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Buffer delete
+vim.keymap.set('n', '<leader>c', '<CMD>:bd<CR>', { desc = '[C]lose Buffer' })
+
+-- Select all
+vim.keymap.set('n', '<leader>A', 'ggVG', { desc = 'Select all' })
+
 -- Keymaps for sourcing lua
 vim.keymap.set('n', '<leader>x', ':.lua<CR>', { desc = 'Source current line' })
 vim.keymap.set('v', '<leader>x', ':lua<CR>', { desc = 'Source current selection' })
