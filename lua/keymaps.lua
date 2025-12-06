@@ -21,24 +21,19 @@ vim.keymap.set('n', '<leader>A', 'ggVG', { desc = 'Select all' })
 vim.keymap.set('n', '<leader>x', ':.lua<CR>', { desc = 'Source current line' })
 vim.keymap.set('v', '<leader>x', ':lua<CR>', { desc = 'Source current selection' })
 
+-- Make invoice
+-- vim.keymap.set('n', '<leader>m', ':silent w | !python make_invoice.py<CR>', { desc = '[M]ake invoice'})
+vim.keymap.set('n', '<leader>m', function()
+  vim.cmd 'silent write'
+  vim.cmd 'silent !python make_invoice.py > /dev/null 2>&1'
+end, { desc = '[M]ake invoice' })
+
 -- Note -- Some terminals have colliding keymaps or are not able to send distinct keycodes
 --
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
 -- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
 -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
-
--- [[ Basic Autocommands ]]
---  See `:help lua-guide-autocommands`
-
--- Highlight when yanking (copying) text
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function()
-    vim.hl.on_yank()
-  end,
-})
 
 -- -----------------------------------------------------------------------------------------------------------
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
