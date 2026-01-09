@@ -92,6 +92,13 @@ return {
       desc = 'Find Files',
     },
     {
+      '<leader>fF',
+      function()
+        Snacks.picker.files { hidden = true, ignored = true }
+      end,
+      desc = 'Find Files',
+    },
+    {
       '<leader>fg',
       function()
         Snacks.picker.git_files()
