@@ -25,9 +25,16 @@ return {
   },
   ---@type YaziConfig
   opts = {
-    -- Ensure yazi uses the same zoxide database as the terminal by inheriting
-    -- the ZOXIDE_DB environment variable. If not set, zoxide uses its default
-    -- location (~/.local/share/zoxide/db.zo on Linux/macOS).
+    -- Yazi will automatically use the same zoxide database as your terminal
+    -- because it inherits the ZOXIDE_DB environment variable from Neovim.
+    --
+    -- How it works:
+    -- 1. If ZOXIDE_DB is set in your shell, Neovim inherits it when started
+    -- 2. yazi.nvim spawns yazi as a subprocess, which inherits from Neovim
+    -- 3. Yazi's zoxide plugin uses the `zoxide` command, which respects ZOXIDE_DB
+    --
+    -- No additional configuration is needed. The database is automatically shared.
+    -- Default location: ~/.local/share/zoxide/db.zo (Linux/macOS)
     yazi_floating_window_border = 'rounded',
     open_for_directories = false,
     keymaps = {

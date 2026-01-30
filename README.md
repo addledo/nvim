@@ -244,3 +244,17 @@ sudo pacman -S --noconfirm --needed gcc make git ripgrep fd unzip neovim
 ```
 </details>
 
+## Custom Plugins
+
+This configuration includes several custom plugins in addition to the default kickstart plugins:
+
+### File Managers
+- **yazi.nvim**: Terminal file manager integration that shares the same zoxide database as your terminal
+  - Keybindings: `<leader>-` (open at current file), `<leader>cw` (open at working directory), `<c-up>` (toggle last session)
+  - Requires [yazi](https://github.com/sxyazi/yazi) to be installed
+  - Automatically integrates with [zoxide](https://github.com/ajeetdsouza/zoxide) for directory jumping
+
+- **oil.nvim**: Edit your filesystem like a normal Neovim buffer
+  - Keybinding: `-` (open parent directory)
+
+
