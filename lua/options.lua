@@ -61,4 +61,7 @@ vim.o.confirm = true
 -- set line length indicator to 105 characters
 vim.o.colorcolumn = '105'
 
+-- turn off cursor animation in neovide
+vim.g.neovide_cursor_animation_length = 0
+
 -- vim: ts=2 sts=2 sw=2 et
