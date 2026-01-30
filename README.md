@@ -257,4 +257,3 @@ This configuration includes several custom plugins in addition to the default ki
 - **oil.nvim**: Edit your filesystem like a normal Neovim buffer
   - Keybinding: `-` (open parent directory)
 
-
