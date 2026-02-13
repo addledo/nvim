@@ -5,9 +5,8 @@ return {
 
   ---@type snacks.Config
   opts = {
-    dashboard = { enabled = true },
+    dashboard = require('jonty.dashboard'),
     picker = { enabled = true },
-
     bigfile = { enabled = false },
     explorer = { enabled = false },
     indent = { enabled = false },
