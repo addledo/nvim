@@ -1,17 +1,19 @@
 return {
-    'echasnovski/mini.nvim',
+  'echasnovski/mini.nvim',
 
-    config = function()
-      require('mini.ai').setup { n_lines = 500 }
-      require('mini.surround').setup()
-      require('mini.align').setup()
+  config = function()
+    require('mini.ai').setup { n_lines = 500 }
+    require('mini.surround').setup()
+    require('mini.align').setup()
+    require('mini.splitjoin').setup()
+    require('mini.move').setup()
+    require('mini.cursorword').setup()
 
-      local statusline = require 'mini.statusline'
-      statusline.setup { use_icons = vim.g.have_nerd_font }
-      -- Set the section for cursor location to LINE:COLUMN
-      statusline.section_location = function()
-        return '%2l:%-2v'
-      end
-
-    end, -- config
+    local statusline = require 'mini.statusline'
+    statusline.setup { use_icons = vim.g.have_nerd_font }
+    -- Set the section for cursor location to LINE:COLUMN
+    statusline.section_location = function()
+      return '%2l:%-2v'
+    end
+  end, -- config
 }
