@@ -21,6 +21,9 @@ return {
     formatters_by_ft = {
       lua = { 'stylua' },
       pascal = { 'delphi_formatter' },
+
+      -- Fallback if no other formatters
+      ['_'] = { 'trim_whitespace', 'trim_newlines' },
     },
 
     formatters = {
@@ -33,11 +36,10 @@ return {
           return {
             '-config',
             repo .. '/DevelopmentEnvironment/delphi_formatter.config',
-            '$FILENAME'
+            '$FILENAME',
           }
-          end,
+        end,
       }, --delphi
-
     }, -- formatters
   }, -- opts
 }
