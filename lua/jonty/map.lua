@@ -25,6 +25,10 @@ end, { desc = 'Yank whole file to clipboard' })
 vim.keymap.set('n', '<leader>x', ':.lua<CR>', { desc = 'Source current line' })
 vim.keymap.set('v', '<leader>x', ':lua<CR>', { desc = 'Source current selection' })
 
+-- Exit terminal mode
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+
+-- Change directory commands
 -- cd to repo root
 vim.keymap.set("n", "<leader>dr", function()
   local root = vim.fs.root(0, { ".git" })
