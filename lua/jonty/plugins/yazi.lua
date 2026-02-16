@@ -7,37 +7,42 @@ return {
   },
   keys = {
     {
-      '<leader>y',
+      '<leader>yy',
       mode = { 'n', 'v' },
-      '<cmd>Yazi<cr>',
-      desc = 'Open yazi at the current file',
-    },
-    {
-      -- Open in the current working directory
-      '<leader>cw',
       '<cmd>Yazi cwd<cr>',
-      desc = "Open the file manager in nvim's working directory",
+      desc = '[Y]azi',
     },
     {
-      '<c-up>',
+      -- Open in the current file's directory
+      '<leader>yh',
+      '<cmd>Yazi<cr>',
+      desc = '[Y]azi [h]ere',
+    },
+    {
+      "<leader>yr",
+      function()
+        local root = vim.fs.root(0, { ".git" }) or vim.uv.cwd()
+        require("yazi").yazi({}, root)
+      end,
+      desc = "[Y]azi [r]epo",
+    },
+    {
+      '<leader>Y',
       '<cmd>Yazi toggle<cr>',
       desc = 'Resume the last yazi session',
     },
   },
   ---@type YaziConfig | {}
   opts = {
-    change_neovim_cwd_on_close = true,
+    change_neovim_cwd_on_close = false,
     -- if you want to open yazi instead of netrw, see below for more info
     open_for_directories = false,
     keymaps = {
       show_help = '<f1>',
     },
   },
-  -- 👇 if you use `open_for_directories=true`, this is recommended
   init = function()
     -- mark netrw as loaded so it's not loaded at all.
-    --
-    -- More details: https://github.com/mikavilpas/yazi.nvim/issues/802
     vim.g.loaded_netrwPlugin = 1
   end,
 }
