@@ -20,6 +20,11 @@ require("lazy").setup({
     spec = {
       { import = "jonty.plugins" },
     },
+    performance = {
+        cache = {
+            enabled = true,
+        },
+    },
 })
 
 -- vim: sw=4 ts=4 et
