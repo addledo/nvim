@@ -3,26 +3,22 @@ return {
 
   enabled = true,
 
-  dependencies = { 'rafamadriz/friendly-snippets' },
+  dependencies = {
+    'rafamadriz/friendly-snippets',
+    {
+      'mikavilpas/blink-ripgrep.nvim',
+      version = '*', -- use the latest stable version
+    },
+  },
 
   version = '1.*',
 
   opts = {
-    -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
-    -- 'super-tab' for mappings similar to vscode (tab to accept)
-    -- 'enter' for enter to accept
-    -- 'none' for no mappings
-
-    -- All presets have the following mappings:
-    -- C-space: Open menu or open docs if already open
-    -- C-n/C-p or Up/Down: Select next/previous item
-    -- C-e: Hide menu
-    -- C-k: Toggle signature help (if signature.enabled = true)
-
+    -- keymap = { preset = 'default' },
     keymap = { preset = 'super-tab' },
 
     appearance = {
-      nerd_font_variant = 'mono'
+      nerd_font_variant = 'mono',
     },
 
     -- (Default) Only show the documentation popup when manually triggered
@@ -32,10 +28,30 @@ return {
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
       -- default = { 'lsp', 'path', 'snippets', 'buffer' },
-      default = { 'path', 'snippets', 'buffer' },
+      default = { 'ripgrep', 'path', 'snippets', 'buffer' },
+
+      providers = {
+        ripgrep = {
+          module = 'blink-ripgrep',
+          name = 'Ripgrep',
+          opts = {
+            backend = {
+              use = 'ripgrep',
+              ripgrep = {
+                additional_rg_options = {
+                  -- Ignore this directory for completions
+                  '--glob',
+                  '!**/Delphi/Testing/**',
+                },
+              },
+            },
+          },
+        },
+      },
     },
 
-    fuzzy = { implementation = "prefer_rust_with_warning" }
+    fuzzy = { implementation = 'prefer_rust_with_warning' },
   },
-  opts_extend = { "sources.default" }
+
+  opts_extend = { 'sources.default' },
 }
