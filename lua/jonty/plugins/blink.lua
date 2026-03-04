@@ -28,7 +28,7 @@ return {
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
       -- default = { 'lsp', 'path', 'snippets', 'buffer' },
-      default = { 'lazydev', 'ripgrep', 'path', 'snippets', 'buffer' },
+      default = { 'lazydev', 'snippets', 'path', 'ripgrep', 'buffer' },
 
       providers = {
         lazydev = {
@@ -36,6 +36,9 @@ return {
           module = 'lazydev.integrations.blink',
           -- make lazydev completions top priority (see `:h blink.cmp`)
           score_offset = 100,
+        },
+        snippets = {
+          score_offset = 90,
         },
         ripgrep = {
           module = 'blink-ripgrep',
