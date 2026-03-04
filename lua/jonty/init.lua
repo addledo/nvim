@@ -1,6 +1,12 @@
 require 'jonty.options'
 require 'jonty.map'
 require 'jonty.autocommands'
+
+-- Stop here if in vscode
+if vim.g.vscode then
+  return
+end
+
 require 'jonty.lazy'
 
 -- vim.lsp.enable('delphi_lsp')
