@@ -1,0 +1,61 @@
+{
+  "sort directive": {
+    "prefix": "sort",
+    "body": [
+      "{**sort**}$0",
+      "{**endsort**}"
+    ]
+  },
+  "sort use directive": {
+    "prefix": "sortuse",
+    "body": [
+      "{**sortuse**}$0",
+      "{**endsortuse**}"
+    ]
+  },
+  "unit skeleton": {
+    "prefix": "unit",
+    "body": [
+      "unit ${TM_FILENAME_BASE};",
+      "",
+      "interface",
+      "  $0",
+      "implementation",
+      "",
+      "end."
+    ]
+  },
+  "if": {
+    "prefix": "if",
+    "body": [
+      "if ${1:condition} then",
+      "begin",
+      "  $0",
+      "end;"
+    ]
+  },
+  "procedure": {
+    "prefix": [
+      "proc",
+      "procedure"
+    ],
+    "body": [
+      "procedure $1;",
+      "begin",
+      "  $0",
+      "end;"
+    ]
+  },
+  "function": {
+    "prefix": [
+      "func",
+      "function"
+    ],
+    "body": [
+      "function $1;",
+      "begin",
+      "  $0",
+      "end;"
+    ]
+  }
+}
