@@ -13,6 +13,14 @@
       "{**endsortuse**}"
     ]
   },
+  "begin end": {
+    "prefix": "begin",
+    "body": [
+      "begin",
+      "  $0",
+      "end;"
+    ]
+  },
   "unit skeleton": {
     "prefix": "unit",
     "body": [
