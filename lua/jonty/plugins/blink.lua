@@ -2,6 +2,7 @@ return {
   'saghen/blink.cmp',
 
   enabled = true,
+  event = 'BufEnter',
 
   dependencies = {
     'rafamadriz/friendly-snippets',

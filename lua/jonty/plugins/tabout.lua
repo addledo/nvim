@@ -2,7 +2,7 @@
 return {
   'abecodes/tabout.nvim',
   enabled = false,
-  lazy = false,
+  event = 'InsertEnter',
   config = function()
     require('tabout').setup {
       tabkey = '<Tab>', -- key to trigger tabout, set to an empty string to disable
