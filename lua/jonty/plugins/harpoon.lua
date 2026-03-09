@@ -1,6 +1,8 @@
 -- custom/plugins/harpoon.lua
 return {
   'ThePrimeagen/harpoon',
+  event = 'VeryLazy',
+  priority = 900,
   branch = 'harpoon2',
   dependencies = { 'nvim-lua/plenary.nvim', 'folke/which-key.nvim' },
   config = function()
