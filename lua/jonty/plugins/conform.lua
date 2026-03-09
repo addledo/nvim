@@ -20,6 +20,7 @@ return {
 
     formatters_by_ft = {
       lua = { 'stylua' },
+      json = { 'jq' },
       pascal = { 'delphi_formatter' },
 
       -- Fallback if no other formatters
