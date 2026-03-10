@@ -44,3 +44,6 @@ end, { desc = 'cd to to the current file'})
 vim.keymap.set("n", "<leader>du", function()
   vim.cmd.cd("..")
 end, { desc = 'cd to the parent directory'})
+
+-- Keymap to split comma separated values onto separate lines
+vim.keymap.set('v', '<leader>rs', ':s/, /,\\r/g<CR>vip=', {desc = 'Split on ,space into separate lines'})
