@@ -20,6 +20,14 @@ vim.keymap.set('n', '<leader>sS', function()
   vscode.call 'workbench.action.showAllSymbols'
 end)
 
+vim.keymap.set('n', '<leader>sw', function()
+  vscode.call 'editor.action.referenceSearch.trigger'
+end)
+
+vim.keymap.set("n", "<leader>grr", function()
+  vscode.action("editor.action.rename")
+end)
+
 vim.keymap.set('n', ']c', function()
   vscode.call 'workbench.action.editor.nextChange'
 end)
