@@ -1,7 +1,6 @@
 return {
   'stevearc/conform.nvim',
-  event = { 'BufWritePre' },
-  cmd = { 'ConformInfo' },
+  cmd = 'ConformInfo',
 
   keys = {
     {
@@ -9,8 +8,8 @@ return {
       function()
         require('conform').format { async = true, lsp_format = 'fallback' }
       end,
-      mode = '',
-      desc = '[F]ormat buffer',
+      mode = 'n',
+      desc = 'Format buffer',
     },
   },
 
@@ -31,19 +30,24 @@ return {
       delphi_formatter = {
         inherit = false,
         stdin = false,
+        condition = function()
+          if vim.env.DELPHI_SORTER and vim.env.DELPHI_SORTER ~= '' then
+            return true
+          else
+            vim.notify('Environment variable DELPHI_SORTER not found', vim.log.levels.ERROR)
+            return false
+          end
+        end,
+        cwd = function()
+          return vim.fs.root(0, '.git')
+        end,
         command = 'python',
         args = function()
           local repo = vim.fs.root(0, '.git')
-          local sort_repo_location = vim.env.DELPHI_SORTER
-          if sort_repo_location then
-            return {
-              vim.fs.joinpath(repo, sort_repo_location),
-              '$FILENAME',
-            }
-          else
-            vim.notify('Environment variable DELPHI_SORTER not found', vim.log.levels.WARN)
-            return {}
-          end
+          return {
+            vim.fs.joinpath(repo, vim.env.DELPHI_SORTER),
+            '$FILENAME',
+          }
         end,
       }, --delphi
     }, -- formatters
