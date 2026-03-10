@@ -31,14 +31,19 @@ return {
       delphi_formatter = {
         inherit = false,
         stdin = false,
-        command = 'Formatter.exe',
+        command = 'python',
         args = function()
           local repo = vim.fs.root(0, '.git')
-          return {
-            '-config',
-            repo .. '/DevelopmentEnvironment/delphi_formatter.config',
-            '$FILENAME',
-          }
+          local sort_repo_location = vim.env.DELPHI_SORTER
+          if sort_repo_location then
+            return {
+              vim.fs.joinpath(repo, sort_repo_location),
+              '$FILENAME',
+            }
+          else
+            vim.notify('Environment variable DELPHI_SORTER not found', vim.log.levels.WARN)
+            return {}
+          end
         end,
       }, --delphi
     }, -- formatters
