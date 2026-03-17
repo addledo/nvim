@@ -13,6 +13,22 @@
       "{**endsortuse**}"
     ]
   },
+  "linux directive": {
+    "prefix": "linux",
+    "body": [
+      "{\\$IFDEF LINUX}",
+      "$0",
+      "{\\$ENDIF}"
+    ]
+  },
+  "windows directive": {
+    "prefix": "windows",
+    "body": [
+      "{\\$IFDEF WIN64}",
+      "$0",
+      "{\\$ENDIF}"
+    ]
+  },
   "begin end": {
     "prefix": "begin",
     "body": [
@@ -43,10 +59,7 @@
     ]
   },
   "procedure": {
-    "prefix": [
-      "proc",
-      "procedure"
-    ],
+    "prefix": "procedure",
     "body": [
       "procedure $1;",
       "begin",
@@ -55,10 +68,7 @@
     ]
   },
   "function": {
-    "prefix": [
-      "func",
-      "function"
-    ],
+    "prefix": "function",
     "body": [
       "function $1;",
       "begin",
