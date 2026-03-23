@@ -1,4 +1,68 @@
 return {
+
+  -- Fugitive
+  {
+    'tpope/vim-fugitive',
+    cmd = {
+      'G',
+      'Git',
+      'Gdiffsplit',
+      'Gvdiffsplit',
+      'Gedit',
+      'Gsplit',
+      'Gread',
+      'Gwrite',
+      'Ggrep',
+      'Glgrep',
+      'Gmove',
+      'Gdelete',
+      'Gremove',
+      'Gbrowse',
+    },
+    keys = {
+      { '<leader>gB', '<cmd>G blame<cr>', desc = 'Git blame' },
+    },
+  },
+
+  -- Diffview
+  {
+    'sindrets/diffview.nvim',
+    cmd = 'DiffviewOpen',
+
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+    },
+
+    opts = {
+      vim.keymap.set('n', '<leader>dm', '<cmd>DiffviewOpen main...HEAD<CR>', { desc = 'Diff main...HEAD' }),
+      vim.keymap.set('n', '<leader>dc', '<cmd>DiffviewClose<CR>', { desc = 'DiffviewClose' }),
+    },
+  },
+
+  -- Lazygit
+  {
+    'kdheepak/lazygit.nvim',
+    lazy = true,
+    cmd = {
+      'LazyGit',
+      'LazyGitConfig',
+      'LazyGitCurrentFile',
+      'LazyGitFilter',
+      'LazyGitFilterCurrentFile',
+    },
+    -- optional for floating window border decoration
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    -- setting the keybinding for LazyGit with 'keys' is recommended in
+    -- order to load the plugin when the command is run for the first time
+    keys = {
+      { '<leader>lg', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
+    },
+  },
+
+  -- Gitsigns
+  {
     'lewis6991/gitsigns.nvim',
     event = 'BufEnter',
     opts = {
@@ -60,5 +124,5 @@ return {
         map('n', '<leader>tD', gitsigns.preview_hunk_inline, { desc = '[T]oggle git show [D]eleted' })
       end,
     },
+  },
 }
--- vim: ts=2 sts=2 sw=2 et
