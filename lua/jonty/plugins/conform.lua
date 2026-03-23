@@ -21,6 +21,7 @@ return {
       lua = { 'stylua' },
       json = { 'jq' },
       pascal = { 'delphi_formatter' },
+      ps1 = { 'lsp' },
 
       -- Fallback if no other formatters
       ['_'] = { 'trim_whitespace', 'trim_newlines' },
