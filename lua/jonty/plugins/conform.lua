@@ -22,6 +22,7 @@ return {
       json = { 'jq' },
       pascal = { 'delphi_formatter' },
       ps1 = { 'lsp' },
+      rust = { 'rustfmt' },
 
       -- Fallback if no other formatters
       ['_'] = { 'trim_whitespace', 'trim_newlines' },
