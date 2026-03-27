@@ -21,7 +21,7 @@ return {
       lua = { 'stylua' },
       json = { 'jq' },
       pascal = { 'delphi_formatter' },
-      ps1 = { 'lsp' },
+      ps1 = { 'lsp', 'trim_whitespace', 'trim_newlines' },
       rust = { 'rustfmt' },
 
       -- Fallback if no other formatters
