@@ -1,6 +1,7 @@
 return {
   'stevearc/conform.nvim',
-  cmd = 'ConformInfo',
+  -- cmd = {'ConformInfo', 'Conform'},
+  event = 'VeryLazy',
 
   keys = {
     {
@@ -13,46 +14,87 @@ return {
     },
   },
 
-  opts = {
-    notify_on_error = false,
-    format_on_save = false,
+  config = function()
+    require('conform').setup {
+      notify_on_error = false,
+      format_on_save = false,
 
-    formatters_by_ft = {
-      lua = { 'stylua' },
-      json = { 'jq' },
-      pascal = { 'delphi_formatter' },
-      ps1 = { 'lsp', 'trim_whitespace', 'trim_newlines' },
-      rust = { 'rustfmt' },
+      formatters_by_ft = {
+        lua = { 'stylua' },
+        json = { 'jq' },
+        pascal = { 'jamie' },
+        ps1 = { 'lsp', 'trim_whitespace', 'trim_newlines' },
+        rust = { 'rustfmt' },
 
-      -- Fallback if no other formatters
-      ['_'] = { 'trim_whitespace', 'trim_newlines' },
-    },
+        -- Fallback if no other formatters
+        ['_'] = { 'trim_whitespace', 'trim_newlines' },
+      },
 
-    formatters = {
-      delphi_formatter = {
-        inherit = false,
-        stdin = false,
-        condition = function()
-          if vim.env.DELPHI_SORTER and vim.env.DELPHI_SORTER ~= '' then
-            return true
-          else
-            vim.notify('Environment variable DELPHI_SORTER not found', vim.log.levels.ERROR)
-            return false
-          end
-        end,
-        cwd = function()
-          return vim.fs.root(0, '.git')
-        end,
-        command = 'python',
-        args = function()
-          local repo = vim.fs.root(0, '.git')
-          return {
-            vim.fs.joinpath(repo, vim.env.DELPHI_SORTER),
-            '$FILENAME',
-          }
-        end,
-      }, --delphi
-    }, -- formatters
-  }, -- opts
+      formatters = {
+        jamie = {
+          -- {{{
+          inherit = false,
+          stdin = false,
+          condition = function()
+            if vim.env.DELPHI_SORTER and vim.env.DELPHI_SORTER ~= '' then
+              return true
+            else
+              vim.notify('Environment variable DELPHI_SORTER not found', vim.log.levels.ERROR)
+              return false
+            end
+          end,
+          cwd = function()
+            return vim.fs.root(0, '.git')
+          end,
+          command = 'python',
+          args = function()
+            local repo = vim.fs.root(0, '.git')
+            return {
+              vim.fs.joinpath(repo, vim.env.DELPHI_SORTER),
+              '$FILENAME',
+            }
+          end,
+          -- }}}
+        }, --jamie
+        delphi = {
+          -- {{{
+          inherit = false,
+          stdin = false,
+          condition = function()
+            if vim.env.DELPHI_FORMATTER_CONFIG and vim.env.DELPHI_FORMATTER_CONFIG ~= '' then
+              return true
+            else
+              vim.notify('Environment variable DELPHI_FORMATTER_CONFIG not found', vim.log.levels.ERROR)
+              return false
+            end
+          end,
+          cwd = function()
+            return vim.fs.root(0, '.git')
+          end,
+          command = 'Formatter.exe',
+          args = function()
+            local repo = vim.fs.root(0, '.git')
+            return {
+              '-config',
+              vim.fs.joinpath(repo, vim.env.DELPHI_FORMATTER_CONFIG),
+              '$FILENAME',
+            }
+          end,
+          -- }}}
+        }, -- delphi
+      }, -- formatters
+    }
+  end,
+
+  vim.api.nvim_create_user_command('Conform', function(opts)
+    require('conform').format {
+      formatters = { opts.args },
+    }
+  end, {
+    nargs = 1,
+    complete = function()
+      return vim.tbl_keys(require('conform').formatters)
+    end,
+  }),
 }
--- vim: ts=2 sts=2 sw=2 et
+-- vim: ts=2 sts=2 sw=2 et foldmethod=marker
