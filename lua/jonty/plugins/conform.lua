@@ -1,6 +1,6 @@
 return {
   'stevearc/conform.nvim',
-  -- cmd = {'ConformInfo', 'Conform'},
+  -- cmd = {'ConformInfo', 'Format'},
   event = 'VeryLazy',
 
   keys = {
@@ -86,7 +86,7 @@ return {
     }
   end,
 
-  vim.api.nvim_create_user_command('Conform', function(opts)
+  vim.api.nvim_create_user_command('Format', function(opts)
     require('conform').format {
       formatters = { opts.args },
     }
