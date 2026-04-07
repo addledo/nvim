@@ -6,6 +6,7 @@ return {
     cmd = {
       'G',
       'Git',
+      'Gvsplit',
       'Gdiffsplit',
       'Gvdiffsplit',
       'Gedit',
