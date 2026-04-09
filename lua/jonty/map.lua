@@ -4,6 +4,9 @@ vim.g.maplocalleader = "\\"
 -- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+-- Keymap for next quickfix
+vim.keymap.set('n', '<leader>;', ':cnext<CR>')
+
 -- Window switching
 vim.keymap.set('n', '<leader>j', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<leader>k', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
