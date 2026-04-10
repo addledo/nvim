@@ -6,7 +6,7 @@ return {
     vim.keymap.set('n', '<leader>gf', function()
       require('grug-far').open {
         prefills = {
-          flags = '-i',
+          flags = '-S',
         },
       }
     end)
