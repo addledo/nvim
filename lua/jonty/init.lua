@@ -1,6 +1,7 @@
 require 'jonty.options'
 require 'jonty.map'
 require 'jonty.autocommands'
+require 'jonty.commands'
 
 if vim.g.vscode then
   require 'jonty.vscode.map'
