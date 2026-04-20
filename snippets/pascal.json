@@ -13,19 +13,38 @@
       "{**endsortuse**}"
     ]
   },
+  "ifdef directive": {
+    "prefix": "ifdef",
+    "body": [
+        "{\\$IFDEF $1}$0",
+        "{\\$ENDIF}"
+    ]
+  },
+  "ifndef directive": {
+    "prefix": "ifndef",
+    "body": [
+      "{\\$IFNDEF $1}$0",
+      "{\\$ENDIF}"
+    ]
+  },
   "linux directive": {
     "prefix": "linux",
     "body": [
-      "{\\$IFDEF LINUX}",
-      "$0",
+      "{\\$IFDEF LINUX}$0",
       "{\\$ENDIF}"
     ]
   },
   "windows directive": {
     "prefix": "windows",
     "body": [
-      "{\\$IFDEF WIN64}",
-      "$0",
+      "{\\$IFDEF WIN64}$0",
+      "{\\$ENDIF}"
+    ]
+  },
+  "headless directive": {
+    "prefix": "headless",
+    "body": [
+      "{\\$IFDEF HEADLESS}$0",
       "{\\$ENDIF}"
     ]
   },
@@ -33,7 +52,7 @@
     "prefix": "begin",
     "body": [
       "begin",
-      "  $0",
+      "$0",
       "end;"
     ]
   },
@@ -53,9 +72,27 @@
     "prefix": "if",
     "body": [
       "if ${1:condition} then",
-      "begin",
+      "  begin",
       "  $0",
-      "end;"
+      "  end;"
+    ]
+  },
+  "case": {
+    "prefix": "case",
+    "body": [
+      "case $1 of",
+      "$2 :",
+      "  begin",
+      "  $3",
+      "  end;",
+      "$4 :",
+      "  begin",
+      "  $5",
+      "  end;",
+      "else",
+      "  begin",
+      "  $0",
+      "  end;"
     ]
   },
   "procedure": {
@@ -63,7 +100,7 @@
     "body": [
       "procedure $1;",
       "begin",
-      "  $0",
+      "$0",
       "end;"
     ]
   },
@@ -72,7 +109,7 @@
     "body": [
       "function $1;",
       "begin",
-      "  $0",
+      "$0",
       "end;"
     ]
   }
