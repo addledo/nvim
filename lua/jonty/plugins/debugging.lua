@@ -15,7 +15,7 @@ return {
       { '<F1>',      function() require('dap').step_into() end,                                           desc = 'Debug: Step Into' },
       { '<F2>',      function() require('dap').step_over() end,                                           desc = 'Debug: Step Over' },
       { '<F3>',      function() require('dap').step_out() end,                                            desc = 'Debug: Step Out' },
-      { '<leader>b', function() require('dap').toggle_breakpoint() end,                                   desc = 'Debug: Toggle Breakpoint' },
+      -- { '<leader>b', function() require('dap').toggle_breakpoint() end,                                   desc = 'Debug: Toggle Breakpoint' },
       { '<leader>B', function() require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ') end, desc = 'Debug: Set Conditional Breakpoint' },
       { '<leader>Dt',      function() require('dapui').toggle() end,                                            desc = 'Debug: Toggle UI' },
       { '<leader>Dx',      function() require('dap').terminate() end,                                           desc = 'Debug: Terminate' },
@@ -49,7 +49,6 @@ return {
           stopOnEntry = false,
         },
       }
-
 
       -- dap.configurations.python = {
       --   {
