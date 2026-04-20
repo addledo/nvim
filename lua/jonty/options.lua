@@ -7,6 +7,21 @@ vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
 
+global_shell = ''
+if jit then
+  if jit.os == "Windows" then
+    global_shell = vim.fn.executable("pwsh") and "pwsh" or "powershell"
+  elseif vim.fn.executable("zsh") then
+    global_shell = "zsh"
+  else
+    global_shell = "bash"
+  end
+end
+-- Breaks toggleterm
+-- if global_shell then
+--   vim.o.shell = global_shell
+-- end
+
 -- Enable mouse mode
 vim.o.mouse = 'a'
 
