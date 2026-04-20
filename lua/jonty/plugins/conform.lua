@@ -22,6 +22,7 @@ return {
       formatters_by_ft = {
         lua = { 'stylua' },
         json = { 'jq' },
+        javascript = { 'prettier' },
         pascal = { 'jamie' },
         ps1 = { 'lsp', 'trim_whitespace', 'trim_newlines' },
         rust = { 'rustfmt' },
