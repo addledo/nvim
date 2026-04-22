@@ -8,13 +8,14 @@ local languages = {
   'luadoc',
   'markdown',
   'markdown_inline',
+  'pascal',
+  'powershell',
+  'python',
   'query',
+  'regex',
+  'rust',
   -- 'vim',
   -- 'vimdoc',
-  'pascal',
-  'python',
-  'rust',
-  'powershell',
 }
 
 return {
