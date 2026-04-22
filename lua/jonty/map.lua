@@ -1,6 +1,14 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+-- Keymaps for cumulitive yanking into a buffer
+vim.keymap.set('n', '<leader>yl', '"lyy', { desc = 'Overwite cumulitive buffer with line' })
+vim.keymap.set('n', '<leader>ya', '"Lyy', { desc = 'Add line to cumulitive buffer' })
+vim.keymap.set('v', '<leader>yl', '"ly', { desc = 'Overwite cumulitive buffer with selection' })
+vim.keymap.set('v', '<leader>ya', '"Ly', { desc = 'Add selection to cumulitive buffer' })
+vim.keymap.set('n', '<leader>yp', '"lp', { desc = 'Put cumulative buffer' })
+vim.keymap.set('n', '<leader>yP', '"lP', { desc = 'Put cumulative buffer above' })
+
 -- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
@@ -36,17 +44,17 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 vim.keymap.set("n", "<leader>dr", function()
   local root = vim.fs.root(0, { ".git" })
   if root then vim.cmd.cd(root) end
-end, { desc = 'cd to repo root'})
+end, { desc = 'cd to repo root' })
 
 -- cd to current file's directory
 vim.keymap.set("n", "<leader>d.", function()
   vim.cmd.cd(vim.fn.expand("%:p:h"))
-end, { desc = 'cd to to the current file'})
+end, { desc = 'cd to to the current file' })
 
 -- cd one up
 vim.keymap.set("n", "<leader>du", function()
   vim.cmd.cd("..")
-end, { desc = 'cd to the parent directory'})
+end, { desc = 'cd to the parent directory' })
 
 -- Keymap to split comma separated values onto separate lines
-vim.keymap.set('v', '<leader>rs', ':s/, /,\\r/g<CR>vip=', {desc = 'Split on ,space into separate lines'})
+vim.keymap.set('v', '<leader>rs', ':s/, /,\\r/g<CR>vip=', { desc = 'Split on ,space into separate lines' })
