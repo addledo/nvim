@@ -180,7 +180,7 @@ return {
       desc = 'Git Diff (Hunks)',
     },
     {
-      '<leader>gf',
+      '<leader>gF',
       function()
         Snacks.picker.git_log_file()
       end,
