@@ -32,6 +32,9 @@ vim.keymap.set('n', '<leader>fy', function()
   vim.fn.setpos('.', cur)
 end, { desc = 'Yank whole file to clipboard' })
 
+-- Yank selection to system clipboard
+vim.keymap.set('v', '<leader>y', '"+y', { desc = 'Yank to clipboard' })
+
 -- Keymaps for sourcing lua
 vim.keymap.set('n', '<leader>x', ':.lua<CR>', { desc = 'Source current line' })
 vim.keymap.set('v', '<leader>x', ':lua<CR>', { desc = 'Source current selection' })
