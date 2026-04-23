@@ -32,7 +32,7 @@ return {
 
       filetypes = {
         pascal = {
-          default = { 'lazydev', 'snippets', 'path', 'ripgrep', 'buffer' },
+          default = { 'snippets', 'buffer', 'path', 'ripgrep' },
         },
       },
 
@@ -47,12 +47,16 @@ return {
         snippets = {
           score_offset = 90,
         },
+        buffer = {
+          score_offset = 90,
+        },
         ripgrep = {
+          score_offset = 50,
           module = 'blink-ripgrep',
           name = 'Ripgrep',
           opts = {
             backend = {
-              use = 'ripgrep',
+              use = 'gitgrep-or-ripgrep',
               ripgrep = {
                 additional_rg_options = {
                   -- Ignore this directory for completions

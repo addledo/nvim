@@ -13,7 +13,6 @@ return {
     input = { enabled = false },
     quickfile = { enabled = false },
     scope = { enabled = false },
-    scroll = { enabled = false },
     statuscolumn = { enabled = false },
     words = { enabled = false },
 
@@ -25,6 +24,19 @@ return {
     styles = {
       notification = {
         -- wo = { wrap = true } -- Wrap notifications
+      },
+    },
+
+    scroll = {
+      enabled = true,
+      animate = {
+        duration = { step = 7, total = 150 },
+        easing = "linear",
+      },
+      animate_repeat = {
+        delay = 100, -- ms threshold for repeat scrolling
+        duration = { step = 5, total = 50 },
+        easing = "linear",
       },
     },
   },
@@ -168,7 +180,7 @@ return {
       desc = 'Git Diff (Hunks)',
     },
     {
-      '<leader>gf',
+      '<leader>gF',
       function()
         Snacks.picker.git_log_file()
       end,

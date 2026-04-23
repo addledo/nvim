@@ -1,46 +1,60 @@
-return {
-  { -- Highlight, edit, and navigate code
-    'nvim-treesitter/nvim-treesitter',
-    branch = 'master',
-    main = 'nvim-treesitter.configs',
-    lazy = false,
-    build = ':TSUpdate',
-
-    opts = {
-      ensure_installed = {
-        'bash',
-        'c',
-        'diff',
-        'html',
-        'lua',
-        'luadoc',
-        'markdown',
-        'markdown_inline',
-        'query',
-        'vim',
-        'vimdoc',
-        'pascal',
-        'python',
-     },
-      -- Autoinstall languages that are not installed
-      auto_install = true,
-      highlight = {
-        enable = true,
-        -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
-        --  If you are experiencing weird indenting issues, add the language to
-        --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-        additional_vim_regex_highlighting = { 'ruby' },
-      },
-      indent = { enable = true, disable = { 'pascal' } },
-
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          node_incremental = 'v',
-          node_decremental = 'V',
-        },
-      },
-    },
-  },
+-- Languages to install by default
+local languages = {
+  'bash',
+  'c',
+  'diff',
+  'html',
+  'lua',
+  'luadoc',
+  'markdown',
+  'markdown_inline',
+  'pascal',
+  'powershell',
+  'python',
+  'query',
+  'regex',
+  'rust',
+  -- 'vim',
+  -- 'vimdoc',
 }
+
+return {
+  'nvim-treesitter/nvim-treesitter',
+  branch = 'main',
+  -- Update parsers when plugin is updated
+  build = ':TSUpdate',
+  config = function()
+    -- Install listed languages
+    require('nvim-treesitter').install(languages)
+
+    vim.api.nvim_create_autocmd('FileType', {
+      group = vim.api.nvim_create_augroup('treesitter.setup', {}),
+      callback = function(args)
+        local buf = args.buf
+        local filetype = args.match
+
+        -- you need some mechanism to avoid running on buffers that do not
+        -- correspond to a language (like oil.nvim buffers), this implementation
+        -- checks if a parser exists for the current language
+        local language = vim.treesitter.language.get_lang(filetype) or filetype
+        if not vim.treesitter.language.add(language) then
+          return
+        end
+
+        -- replicate `fold = { enable = true }`
+        -- vim.wo.foldmethod = 'expr'
+        -- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+
+        -- replicate `highlight = { enable = true }`
+        vim.treesitter.start(buf, language)
+
+        -- replicate `indent = { enable = true }`
+        -- vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
+        -- `incremental_selection = { enable = true }` covered by 0.12.0
+      end,
+    })
+  end,
+}
+
 -- vim: ts=2 sts=2 sw=2 et
