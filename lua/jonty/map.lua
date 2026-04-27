@@ -55,5 +55,12 @@ vim.keymap.set("n", "<leader>du", function()
   vim.cmd.cd("..")
 end, { desc = 'cd to the parent directory' })
 
+-- Source keymap (this) file
+vim.keymap.set("n", "<leader>ks", function()
+  local file = vim.fn.stdpath("config") .. "/lua/jonty/map.lua"
+  dofile(file)
+end, { desc = "Source jonty/map.lua" })
+
+
 -- Keymap to split comma separated values onto separate lines
 vim.keymap.set('v', '<leader>rs', ':s/, /,\\r/g<CR>vip=', { desc = 'Split on ,space into separate lines' })
