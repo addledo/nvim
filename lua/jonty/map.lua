@@ -62,5 +62,3 @@ vim.keymap.set("n", "<leader>ks", function()
 end, { desc = "Source jonty/map.lua" })
 
 
--- Keymap to split comma separated values onto separate lines
-vim.keymap.set('v', '<leader>rs', ':s/, /,\\r/g<CR>vip=', { desc = 'Split on ,space into separate lines' })
