@@ -2,7 +2,7 @@ return {
   'mason-org/mason-lspconfig.nvim',
   event = 'VeryLazy',
   opts = {
-    ensure_installed = { 'lua_ls', 'tree-sitter-cli' },
+    ensure_installed = { 'lua_ls' },
   },
   dependencies = {
     { 'mason-org/mason.nvim', opts = {} },
