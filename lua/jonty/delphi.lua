@@ -56,3 +56,28 @@ end
 
 vim.keymap.set("n", "]u", next_match)
 vim.keymap.set("n", "[u", prev_match)
+
+
+
+-- Wrap visual selection with begin/end
+local function wrap_begin_end()
+  local buf = 0
+
+  -- Get the visual selection range
+  local start_row = vim.fn.line("'<") - 1
+  local end_row = vim.fn.line("'>")
+
+  -- Get the first line to detect indentation
+  local first_line = vim.api.nvim_buf_get_lines(buf, start_row, start_row + 1, false)[1]
+  local indent = first_line:match("^(%s*)") or ""
+
+  -- Insert 'end;' after the selection, then 'begin' before
+  vim.api.nvim_buf_set_lines(buf, end_row, end_row, false, { indent .. "end;" })
+  vim.api.nvim_buf_set_lines(buf, start_row, start_row, false, { indent .. "begin" })
+end
+
+vim.keymap.set("v", "<leader>ab", function()
+  -- Exit visual mode first so '< and '> marks are set
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "x", false)
+  wrap_begin_end()
+end, { desc = "Wrap selection with begin/end;" })
