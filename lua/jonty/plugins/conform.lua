@@ -24,7 +24,7 @@ return {
         json = { 'jq' },
         javascript = { 'prettier' },
         pascal = { 'jamie' },
-        ps1 = { 'lsp', 'trim_whitespace', 'trim_newlines' },
+        ps1 = { 'powershell', 'trim_whitespace', 'trim_newlines' },
         rust = { 'rustfmt' },
 
         -- Fallback if no other formatters
@@ -32,6 +32,19 @@ return {
       },
 
       formatters = {
+        powershell = {
+          -- {{{
+          -- Powershell module must be installed:
+          --   Install-Module -Name PSScriptAnalyzer -Scope CurrentUser -Force
+          command = "powershell",
+          args = {
+            "-NoProfile",
+            "-Command",
+            "Invoke-Formatter -ScriptDefinition ($input | Out-String) | Out-String"
+          },
+          stdin = true,
+          -- }}}
+        },
         jamie = {
           -- {{{
           inherit = false,
@@ -83,7 +96,7 @@ return {
           end,
           -- }}}
         }, -- delphi
-      }, -- formatters
+      },   -- formatters
     }
   end,
 
@@ -98,4 +111,4 @@ return {
     end,
   }),
 }
--- vim: ts=2 sts=2 sw=2 et foldmethod=marker
+-- vim: ts=2 sw=2 et foldmethod=marker
