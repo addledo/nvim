@@ -12,6 +12,13 @@ vim.keymap.set('n', '<leader>yP', '"lP', { desc = 'Put cumulative buffer above' 
 -- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+-- Highlight word
+vim.keymap.set('n', '<leader>hw', function()
+  local word = vim.fn.expand('<cword>')
+  vim.fn.setreg('/', '\\<' .. vim.fn.escape(word, '\\/') .. '\\>')
+  vim.o.hlsearch = true
+end, { desc = "Highlight word under cursor" })
+
 -- Keymap for next quickfix
 vim.keymap.set('n', '<leader>;', ':cnext<CR>')
 
