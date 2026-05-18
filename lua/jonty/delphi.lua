@@ -1,6 +1,13 @@
+-- Register pascal file types
+vim.filetype.add({
+  extension = {
+    dpk = "pascal",
+  },
+})
+
+
 -- Keymap to split comma separated values onto separate lines, for uses blocks
 vim.keymap.set('v', '<leader>rs', ':s/, /,\\r/g<CR>vip=', { desc = 'Split on ,space into separate lines' })
-
 
 
 -- Wrap uses in sort directives
@@ -39,7 +46,6 @@ end, { expr = true, desc = "Wrap uses block (operator)" })
 _G.wrap_uses_range = wrap_uses_range
 
 vim.keymap.set("n", "<leader>jj", "<leader>juip", { remap = true, desc = "Wrap uses block in paragraph" })
-
 
 
 
