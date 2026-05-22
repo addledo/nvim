@@ -32,7 +32,7 @@ return {
         automatic_installation = true,
         ensure_installed = {
           'codelldb',
-          -- 'python',
+          'python',
         },
         handlers = {},
       }
@@ -50,14 +50,38 @@ return {
         },
       }
 
-      -- dap.configurations.python = {
-      --   {
-      --     type = 'python',
-      --     request = 'launch',
-      --     name = 'Launch file',
-      --     program = '${file}',
-      --   },
-      -- }
+      dap.configurations.python = {
+        {
+          type = 'debugpy',
+          request = 'launch',
+          name = 'Launch file',
+          program = '${file}',
+          pythonPath = function()
+            local venv = os.getenv('VIRTUAL_ENV')
+            if venv then
+              return venv .. '/bin/python'
+            end
+            return 'python3'
+          end,
+        },
+        {
+          type = 'debugpy',
+          request = 'launch',
+          name = 'Launch file with arguments',
+          program = '${file}',
+          args = function()
+            local args_string = vim.fn.input('Arguments: ')
+            return vim.split(args_string, ' +')
+          end,
+          pythonPath = function()
+            local venv = os.getenv('VIRTUAL_ENV')
+            if venv then
+              return venv .. '/bin/python'
+            end
+            return 'python3'
+          end,
+        },
+      }
 
 
       dap.listeners.before.attach.dapui_config = function()
