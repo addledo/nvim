@@ -7,7 +7,7 @@ return {
   },
   keys = {
     {
-      '<leader>yy',
+      '<leader>y<space>',
       mode = { 'n', 'v' },
       '<cmd>Yazi cwd<cr>',
       desc = '[Y]azi',
