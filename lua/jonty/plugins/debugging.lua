@@ -7,18 +7,19 @@ return {
       'theHamsta/nvim-dap-virtual-text',
       'williamboman/mason.nvim',
       'jay-babu/mason-nvim-dap.nvim',
+      'mfussenegger/nvim-dap-python',
     },
 
     keys = {
-      -- Basic debugging keymaps, feel free to change to your liking!
-      { '<F5>',      function() require('dap').continue() end,                                            desc = 'Debug: Start/Continue' },
-      { '<F1>',      function() require('dap').step_into() end,                                           desc = 'Debug: Step Into' },
-      { '<F2>',      function() require('dap').step_over() end,                                           desc = 'Debug: Step Over' },
-      { '<F3>',      function() require('dap').step_out() end,                                            desc = 'Debug: Step Out' },
-      -- { '<leader>b', function() require('dap').toggle_breakpoint() end,                                   desc = 'Debug: Toggle Breakpoint' },
-      { '<leader>B', function() require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ') end, desc = 'Debug: Set Conditional Breakpoint' },
-      { '<leader>Dt',      function() require('dapui').toggle() end,                                            desc = 'Debug: Toggle UI' },
-      { '<leader>Dx',      function() require('dap').terminate() end,                                           desc = 'Debug: Terminate' },
+      { '<F1>', function() require('dap').step_into() end, desc = 'Debug: Step Into', },
+      { '<F2>', function() require('dap').step_over() end, desc = 'Debug: Step Over', },
+      { '<F3>', function() require('dap').step_out() end, desc = 'Debug: Step Out', },
+      { '<F5>', function() require('dap').continue() end, desc = 'Debug: Start/Continue', },
+      { '<F6>', function() require('dap').restart() end, desc = 'Debug: Restart' },
+      { '<leader>b', function() require('dap').toggle_breakpoint() end, desc = 'Debug: Toggle Breakpoint', },
+      { '<leader>DB', function() require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ') end, desc = 'Debug: Set Conditional Breakpoint', },
+      { '<leader>Dt', function() require('dapui').toggle() end, desc = 'Debug: Toggle UI', },
+      { '<leader>Dx', function() require('dap').terminate() end, desc = 'Debug: Terminate', },
     },
 
     config = function()
@@ -26,16 +27,20 @@ return {
       local ui = require 'dapui'
 
       ui.setup()
-      require('nvim-dap-virtual-text').setup({})
+      require('nvim-dap-virtual-text').setup {}
 
       require('mason-nvim-dap').setup {
         automatic_installation = true,
         ensure_installed = {
           'codelldb',
-          -- 'python',
+          'python',
         },
         handlers = {},
       }
+
+      -- Point nvim-dap-python at Mason's debugpy venv
+      local debugpy_path = vim.fn.stdpath 'data' .. '/mason/packages/debugpy/venv/bin/python'
+      require('dap-python').setup(debugpy_path)
 
       dap.configurations.rust = {
         {
@@ -49,15 +54,6 @@ return {
           stopOnEntry = false,
         },
       }
-
-      -- dap.configurations.python = {
-      --   {
-      --     type = 'python',
-      --     request = 'launch',
-      --     name = 'Launch file',
-      --     program = '${file}',
-      --   },
-      -- }
 
 
       dap.listeners.before.attach.dapui_config = function()
