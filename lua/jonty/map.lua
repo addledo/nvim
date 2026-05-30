@@ -46,6 +46,9 @@ vim.keymap.set('v', '<leader>x', ':lua<CR>', { desc = 'Source current selection'
 -- Exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
+-- Enable C-w window maps for teminal mode
+vim.keymap.set('t','<C-w>', '<C-\\><C-n><C-w>')
+
 -- Change directory commands
 -- cd to repo root
 vim.keymap.set('n', '<leader>dr', function()
