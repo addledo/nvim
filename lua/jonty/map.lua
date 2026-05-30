@@ -1,5 +1,5 @@
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
+vim.g.mapleader = ' '
+vim.g.maplocalleader = '\\'
 
 -- Keymaps for cumulitive yanking into a buffer
 vim.keymap.set('n', '<leader>yl', '"lyy', { desc = 'Overwite cumulitive buffer with line' })
@@ -14,10 +14,10 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Highlight word
 vim.keymap.set('n', '<leader>hw', function()
-  local word = vim.fn.expand('<cword>')
+  local word = vim.fn.expand '<cword>'
   vim.fn.setreg('/', '\\<' .. vim.fn.escape(word, '\\/') .. '\\>')
   vim.o.hlsearch = true
-end, { desc = "Highlight word under cursor" })
+end, { desc = 'Highlight word under cursor' })
 
 -- Keymap for next quickfix
 vim.keymap.set('n', '<leader>;', ':cnext<CR>')
@@ -30,8 +30,8 @@ vim.keymap.set('n', '<leader>fh', 'ggVG', { desc = 'Select all' })
 
 -- Yank all
 vim.keymap.set('n', '<leader>fy', function()
-  local cur = vim.fn.getpos('.')
-  vim.cmd('keepjumps normal! gg"+yG')
+  local cur = vim.fn.getpos '.'
+  vim.cmd 'keepjumps normal! gg"+yG'
   vim.fn.setpos('.', cur)
 end, { desc = 'Yank whole file to clipboard' })
 
@@ -48,26 +48,31 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 
 -- Change directory commands
 -- cd to repo root
-vim.keymap.set("n", "<leader>dr", function()
-  local root = vim.fs.root(0, { ".git" })
-  if root then vim.cmd.cd(root) end
+vim.keymap.set('n', '<leader>dr', function()
+  local root = vim.fs.root(0, { '.git' })
+  if root then
+    vim.cmd.cd(root)
+  end
 end, { desc = 'cd to repo root' })
 
 -- cd to current file's directory
-vim.keymap.set("n", "<leader>d.", function()
-  vim.cmd.cd(vim.fn.expand("%:p:h"))
+vim.keymap.set('n', '<leader>.', function()
+  vim.cmd.cd(vim.fn.expand '%:p:h')
 end, { desc = 'cd to to the current file' })
 
 -- cd one up
-vim.keymap.set("n", "<leader>du", function()
-  vim.cmd.cd("..")
+vim.keymap.set('n', '<leader>..', function()
+  vim.cmd.cd '..'
 end, { desc = 'cd to the parent directory' })
 
+-- print directory
+vim.keymap.set('n', '<leader>dp', '<CMD>:pwd<CR>')
+
 -- Source keymap (this) file
-vim.keymap.set("n", "<leader>ks", function()
-  local file = vim.fn.stdpath("config") .. "/lua/jonty/map.lua"
+vim.keymap.set('n', '<leader>ks', function()
+  local file = vim.fn.stdpath 'config' .. '/lua/jonty/map.lua'
   dofile(file)
-end, { desc = "Source jonty/map.lua" })
+end, { desc = 'Source jonty/map.lua' })
 
 -- Show lsp help
 vim.keymap.set('i', '<C-l>', vim.lsp.buf.signature_help, { desc = 'LSP: Signature help' })
