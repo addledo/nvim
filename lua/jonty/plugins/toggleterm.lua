@@ -1,32 +1,29 @@
 return {
-  "akinsho/toggleterm.nvim",
-  event = "VeryLazy",
+  'akinsho/toggleterm.nvim',
+  event = 'VeryLazy',
   enabled = true,
-  version = "*",
+  version = '*',
   opts = {
     shell = global_shell,
-    direction = "float",
-    float_opts = { border = "curved" },
+    -- direction = 'float',
+    float_opts = { border = 'curved' },
     -- size = 15,
   },
   keys = {
     {
-      "<leader>tt",
-      function()
-        local Terminal = require("toggleterm.terminal").Terminal
-        _G._float_term = _G._float_term or Terminal:new({ direction = "float" })
-        _G._float_term:toggle()
-      end,
-      desc = "Float terminal",
+      '<leader>tt',
+      '<cmd>ToggleTerm direction=float<CR>',
+      desc = 'Float terminal',
     },
     {
-      "<leader>tb",
-      function()
-        local Terminal = require("toggleterm.terminal").Terminal
-        _G._bottom_term = _G._bottom_term or Terminal:new({ direction = "horizontal" })
-        _G._bottom_term:toggle()
-      end,
-      desc = "Bottom terminal",
+      '<leader>tb',
+      '<cmd>ToggleTerm direction=horizontal<CR>',
+      desc = 'Bottom terminal',
+    },
+    {
+      '<leader>tv',
+      '<cmd>ToggleTerm direction=vertical size=100<CR>',
+      desc = 'Vertical terminal',
     },
   },
 }
