@@ -2,6 +2,7 @@
 vim.filetype.add({
   extension = {
     dpk = "pascal",
+    dfm = "pascal",
   },
 })
 
