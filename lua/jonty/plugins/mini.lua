@@ -8,7 +8,7 @@ return {
     require('mini.align').setup()
     require('mini.splitjoin').setup()
     require('mini.move').setup()
-    -- require('mini.cursorword').setup()
+    require('mini.cursorword').setup()
 
     local statusline = require 'mini.statusline'
     statusline.setup { use_icons = vim.g.have_nerd_font }
