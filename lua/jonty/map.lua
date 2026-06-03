@@ -47,7 +47,7 @@ vim.keymap.set('v', '<leader>x', ':lua<CR>', { desc = 'Source current selection'
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- Enable C-w window maps for teminal mode
-vim.keymap.set('t','<C-w>', '<C-\\><C-n><C-w>')
+vim.keymap.set('t', '<C-w>', '<C-\\><C-n><C-w>')
 
 -- Change directory commands
 -- cd to repo root
@@ -85,3 +85,6 @@ vim.keymap.set('n', '<leader>wq', '<C-w>q', { desc = 'Close window' })
 
 -- Close other windows
 vim.keymap.set('n', '<leader>wo', '<C-w>o', { desc = 'Only window' })
+
+-- Search for non-ASCII characters
+vim.keymap.set('n', '<leader>sna', '/[^\\x00-\\x7F]<CR>', { desc = 'Search Non-Ascii' })
