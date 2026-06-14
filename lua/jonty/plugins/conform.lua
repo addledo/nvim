@@ -26,7 +26,7 @@ return {
         pascal = { 'jamie' },
         ps1 = { 'powershell', 'trim_whitespace', 'trim_newlines' },
         rust = { 'rustfmt' },
-
+        cpp = { 'clang-format' },
         -- Fallback if no other formatters
         ['_'] = { 'trim_whitespace', 'trim_newlines' },
       },
