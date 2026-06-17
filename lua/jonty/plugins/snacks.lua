@@ -408,8 +408,9 @@ return {
       end,
       desc = 'Goto Declaration',
     },
+    -- Overrides send refs to quickfix, but can be done with Ctrl-q anyway
     {
-      'gr',
+      'grr',
       function()
         Snacks.picker.lsp_references()
       end,
