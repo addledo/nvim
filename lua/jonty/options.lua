@@ -69,7 +69,7 @@ vim.o.scrolloff = 8
 vim.o.confirm = true
 
 -- Set line length indicator
-if vim.fn.hostname():find("^AA") then
+if vim.fn.hostname():find("^SNPS") then
   vim.o.colorcolumn = '105'
 else
   vim.o.colorcolumn = '120'
