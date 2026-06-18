@@ -88,3 +88,6 @@ vim.keymap.set('n', '<leader>wo', '<C-w>o', { desc = 'Only window' })
 
 -- Search for non-ASCII characters
 vim.keymap.set('n', '<leader>sna', '/[^\\x00-\\x7F]<CR>', { desc = 'Search Non-Ascii' })
+
+-- Insert non-breaking space
+vim.keymap.set('i', '<C-g><Space>', '\xc2\xa0', { desc = 'Insert non-breaking space' })
