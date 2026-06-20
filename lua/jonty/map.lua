@@ -46,8 +46,13 @@ vim.keymap.set('v', '<leader>x', ':lua<CR>', { desc = 'Source current selection'
 -- Exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
--- Enable C-w window maps for teminal mode
-vim.keymap.set('t', '<C-w>', '<C-\\><C-n><C-w>')
+-- Enable C-w window maps for terminal mode without leaving terminal mode
+vim.keymap.set('t', '<C-w>h', '<cmd>wincmd h<cr>')
+vim.keymap.set('t', '<C-w>j', '<cmd>wincmd j<cr>')
+vim.keymap.set('t', '<C-w>k', '<cmd>wincmd k<cr>')
+vim.keymap.set('t', '<C-w>l', '<cmd>wincmd l<cr>')
+vim.keymap.set('t', '<C-w>t', '<cmd>wincmd t<cr>')
+vim.keymap.set('t', '<C-w>b', '<cmd>wincmd b<cr>')
 
 -- Change directory commands
 -- cd to repo root
