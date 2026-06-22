@@ -97,5 +97,12 @@ vim.keymap.set('n', '<leader>sna', '/[^\\x00-\\x7F]<CR>', { desc = 'Search Non-A
 -- Insert non-breaking space
 vim.keymap.set('i', '<C-g><Space>', '\xc2\xa0', { desc = 'Insert non-breaking space' })
 
+-- New line below from insert mode
+vim.keymap.set('i', '<C-j>', '<Esc>o', { desc = 'New line below' })
+
+-- Readline maps
+vim.keymap.set('i', '<C-a>', '<C-o>^', { desc = 'First non-whitespace of line' })
+vim.keymap.set('i', '<C-e>', '<End>', { desc = 'End of line' })
+
 -- justfile commands
 vim.keymap.set('n', '<leader>jb', '<CMD>OverseerShell just build<CR>', { desc = 'just build' })
