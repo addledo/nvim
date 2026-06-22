@@ -48,7 +48,7 @@ return {
           score_offset = 90,
         },
         buffer = {
-          score_offset = 90,
+          score_offset = 89,
         },
         ripgrep = {
           score_offset = 50,
@@ -56,12 +56,13 @@ return {
           name = 'Ripgrep',
           opts = {
             backend = {
-              use = 'gitgrep-or-ripgrep',
+              -- use = 'gitgrep-or-ripgrep',
+              use = 'ripgrep',
               ripgrep = {
                 additional_rg_options = {
                   -- Ignore this directory for completions
-                  '--glob',
-                  '!**/Delphi/Testing/**',
+                  -- '--glob',
+                  -- '!**/Delphi/Testing/**',
                 },
               },
             },
