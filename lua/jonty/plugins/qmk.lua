@@ -21,3 +21,4 @@ return {
   },
 }
 
+-- vim: set commentstring=--\ %s:
