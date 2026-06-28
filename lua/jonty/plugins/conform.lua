@@ -27,6 +27,7 @@ return {
         ps1 = { 'powershell', 'trim_whitespace', 'trim_newlines' },
         rust = { 'rustfmt' },
         cpp = { 'clang-format' },
+        c = { 'clang-format' },
         -- Fallback if no other formatters
         ['_'] = { 'trim_whitespace', 'trim_newlines' },
       },
