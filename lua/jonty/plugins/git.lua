@@ -25,18 +25,16 @@ return {
     },
   },
 
-  -- Diffview
+  -- CodeDiff
   {
-    'sindrets/diffview.nvim',
-    cmd = 'DiffviewOpen',
+    "esmuellert/codediff.nvim",
+    cmd = "CodeDiff",
+    keys = {
+      { '<leader>DD',  '<cmd>CodeDiff<cr>',             desc = 'Git diff' },
+      { '<leader>Dm',  '<cmd>CodeDiff main...HEAD<cr>', desc = 'Git diff (PR)' },
+      { '<leader>Dmu', '<cmd>CodeDiff main...<cr>',     desc = 'Git diff (PR - uncommitted)' },
+      { '<leader>D%',  '<cmd>CodeDiff file<cr>',        desc = 'Git diff' },
 
-    dependencies = {
-      'nvim-tree/nvim-web-devicons',
-    },
-
-    opts = {
-      vim.keymap.set('n', '<leader>dm', '<cmd>DiffviewOpen main...HEAD<CR>', { desc = 'Diff main...HEAD' }),
-      vim.keymap.set('n', '<leader>dc', '<cmd>DiffviewClose<CR>', { desc = 'DiffviewClose' }),
     },
   },
 
