@@ -22,8 +22,26 @@ return {
     },
     {
       '<leader>tv',
-      '<cmd>ToggleTerm direction=vertical size=100<CR>',
+      '<cmd>ToggleTerm direction=vertical size=130<CR>',
       desc = 'Vertical terminal',
+    },
+    {
+      '<leader>th',
+      function()
+        require('toggleterm.terminal').Terminal
+          :new({ direction = 'vertical', size = 100, dir = vim.fn.expand('%:p:h') })
+          :toggle()
+      end,
+      desc = 'Terminal here',
+    },
+    {
+      '<leader>td',
+      function()
+        local term = require('toggleterm.terminal').get_focused_terminal()
+        if term then term:shutdown() end
+      end,
+      mode = 't',
+      desc = 'Terminal destroy',
     },
   },
 }
