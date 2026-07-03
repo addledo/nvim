@@ -1,3 +1,11 @@
+local function vertical_half()
+  return math.floor(vim.o.columns / 2)
+end
+
+local function run_in_vertical(cmd)
+  vim.cmd('TermExec cmd="' .. cmd .. '" direction=vertical size=' .. vertical_half())
+end
+
 return {
   'akinsho/toggleterm.nvim',
   event = 'VeryLazy',
@@ -23,7 +31,7 @@ return {
     {
       '<leader>tv',
       function()
-        vim.cmd('ToggleTerm direction=vertical size=' .. math.floor(vim.o.columns / 2))
+        vim.cmd('ToggleTerm direction=vertical size=' .. vertical_half())
       end,
       desc = 'Vertical terminal',
     },
@@ -51,8 +59,7 @@ return {
       '<leader>trt',
       function()
         local args = vim.fn.input 'cargo test args: '
-        local cmd = 'cargo test' .. (args ~= '' and ' ' .. args or '')
-        vim.cmd('TermExec cmd="' .. cmd .. '" direction=vertical')
+        run_in_vertical('cargo test' .. (args ~= '' and ' ' .. args or ''))
       end,
       desc = 'Rust: cargo test',
     },
@@ -60,8 +67,7 @@ return {
       '<leader>trr',
       function()
         local args = vim.fn.input 'cargo run args: '
-        local cmd = 'cargo run -q --' .. (args ~= '' and ' ' .. args or '')
-        vim.cmd('TermExec cmd="' .. cmd .. '" direction=vertical')
+        run_in_vertical('cargo run -q --' .. (args ~= '' and ' ' .. args or ''))
       end,
       desc = 'Rust: cargo run',
     },
