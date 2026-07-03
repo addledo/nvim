@@ -28,9 +28,7 @@ return {
     {
       '<leader>th',
       function()
-        require('toggleterm.terminal').Terminal
-          :new({ direction = 'vertical', size = 100, dir = vim.fn.expand('%:p:h') })
-          :toggle()
+        require('toggleterm.terminal').Terminal:new({ direction = 'vertical', size = 100, dir = vim.fn.expand '%:p:h' }):toggle()
       end,
       desc = 'Terminal here',
     },
@@ -38,10 +36,32 @@ return {
       '<leader>td',
       function()
         local term = require('toggleterm.terminal').get_focused_terminal()
-        if term then term:shutdown() end
+        if term then
+          term:shutdown()
+        end
       end,
       mode = 't',
       desc = 'Terminal destroy',
+    },
+
+    -- Send Rust commands
+    {
+      '<leader>trt',
+      function()
+        local args = vim.fn.input 'cargo test args: '
+        local cmd = 'cargo test' .. (args ~= '' and ' ' .. args or '')
+        vim.cmd('TermExec cmd="' .. cmd .. '" direction=vertical')
+      end,
+      desc = 'Rust: cargo test',
+    },
+    {
+      '<leader>trr',
+      function()
+        local args = vim.fn.input 'cargo run args: '
+        local cmd = 'cargo run -q --' .. (args ~= '' and ' ' .. args or '')
+        vim.cmd('TermExec cmd="' .. cmd .. '" direction=vertical')
+      end,
+      desc = 'Rust: cargo run',
     },
   },
 }
