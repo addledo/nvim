@@ -22,7 +22,9 @@ return {
     },
     {
       '<leader>tv',
-      '<cmd>ToggleTerm direction=vertical size=130<CR>',
+      function()
+        vim.cmd('ToggleTerm direction=vertical size=' .. math.floor(vim.o.columns / 2))
+      end,
       desc = 'Vertical terminal',
     },
     {
