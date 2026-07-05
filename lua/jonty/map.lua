@@ -85,6 +85,9 @@ end, { desc = 'Source jonty/map.lua' })
 -- Show lsp help
 vim.keymap.set('i', '<C-l>', vim.lsp.buf.signature_help, { desc = 'LSP: Signature help' })
 
+-- LSP code action
+vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { desc = 'LSP: Code action' })
+
 -- Close window
 vim.keymap.set('n', '<leader>wq', '<C-w>q', { desc = 'Close window' })
 
