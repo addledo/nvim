@@ -3,7 +3,15 @@ return {
 
   config = function()
     require('mini.ai').setup { n_lines = 500 }
-    require('mini.indentscope').setup { symbol = '' }
+
+    vim.g.miniindentscope_disable = true
+    require('mini.indentscope').setup {
+      draw = { animation = require('mini.indentscope').gen_animation.linear { duration = 5 } },
+    }
+    vim.keymap.set('n', '<leader>ti', function()
+      vim.g.miniindentscope_disable = not vim.g.miniindentscope_disable
+    end, { desc = 'Toggle indent scope' })
+
     require('mini.surround').setup()
     require('mini.align').setup()
     require('mini.splitjoin').setup()
