@@ -9,7 +9,7 @@ return {
     picker = { enabled = true },
     bigfile = { enabled = false },
     explorer = { enabled = false },
-    indent = { enabled = false },
+    indent = { enabled = false, animate = { duration = { total = 200 } } },
     input = { enabled = false },
     quickfile = { enabled = false },
     scope = { enabled = false },
