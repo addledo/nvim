@@ -39,6 +39,13 @@ end, { desc = 'Yank whole file to clipboard' })
 vim.keymap.set('x', '<leader>y', '"+y', { desc = 'Yank to clipboard' })
 vim.keymap.set('n', '<leader>yy', '"+yy', { desc = 'Yank line to clipboard' })
 
+-- Yank file path to clipboard
+vim.keymap.set('n', '<leader>cc', function()
+  local path = vim.fn.expand('%:p')
+  vim.fn.setreg('+', path)
+  Snacks.notify.info('Copied: ' .. path, { title = 'Clipboard' })
+end, { desc = 'Copy file path to clipboard' })
+
 -- Keymaps for sourcing lua
 vim.keymap.set('n', '<leader>x', ':.lua<CR>', { desc = 'Source current line' })
 vim.keymap.set('v', '<leader>x', ':lua<CR>', { desc = 'Source current selection' })
